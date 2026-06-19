@@ -53,21 +53,44 @@ AI Report Dispatcher
 
 ## Screenshots
 
-### Workflow Architecture
+###📌 workflow.png
+n8n AI Workflow Architecture
 
-![Workflow](./screenshots/workflow.png)
+Source: n8n Docs
+https://docs.n8n.io/advanced-ai/intro-tutorial/
 
-### Resume Upload Form
+Image:
+https://docs.n8n.io/_images/ai-workflow-overview.png
 
-![Form](./screenshots/form.png)
+###📌 form.png
+Resume Upload Form
 
-### AI Generated Output
+Source
+https://medium.com/kudoswall/create-a-job-winning-civil-engineer-fresher-resume-step-by-step-guide-ef3f3887fd05
 
-![Output](./screenshots/output.png)
+Direct image:
 
-### Candidate Database
+https://miro.medium.com/v2/resize:fit:1400/1*7G6vM2FfYwR4d6s8dN0V0Q.png
 
-![Database](./screenshots/database.png)
+###📌 output.png
+AI Analysis Dashboard / Generated Output
+
+Source
+https://dribbble.com/shots/14991146-Talent-Hire-App
+
+Image:
+
+https://cdn.dribbble.com/userupload/2677203/file/original-3a8f2c5f17d4eecb4e5b6a2d7e7ef0d2.png
+
+###📌 database.png
+Google Sheets Database
+
+Source
+https://pagepixels.com/tutorials/how-to-screenshot-private-google-sheet-data-in-make
+
+Image:
+
+https://pagepixels.com/images/tutorials/google-sheet-data.png
 
 ---
 
@@ -80,9 +103,35 @@ AI Report Dispatcher
 - Authentication System
 - Multi-user Support
 
----
+## Repository Structure
+AI-Career-Navigator/
+│
+├── README.md
+├── LICENSE
+├── .gitignore
+├── requirements.txt
+│
+├── workflow/
+│   └── AI_Career_Navigator.json
+│
+├── screenshots/
+│   ├── workflow.png
+│   ├── form.png
+│   ├── output.png
+│   └── database.png
+│
+├── docs/
+│   ├── architecture.png
+│   ├── system_design.png
+│   └── n8n_docs_links.md
+│
+├── report/
+│   └── Project_Report.pdf
+│
+└── ppt/
+    └── AI_Career_Navigator_Presentation.pptx
 
 ## Author
 
-Abhishek Mishra
+Abhishek Kumar Mishra
 
