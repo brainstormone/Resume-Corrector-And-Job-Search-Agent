@@ -53,7 +53,7 @@ AI Report Dispatcher
 
 ## Screenshots
 
-###📌 workflow.png
+📌 workflow.png
 n8n AI Workflow Architecture
 
 Source: n8n Docs
@@ -62,7 +62,7 @@ https://docs.n8n.io/advanced-ai/intro-tutorial/
 Image:
 https://docs.n8n.io/_images/ai-workflow-overview.png
 
-###📌 form.png
+📌 form.png
 Resume Upload Form
 
 Source
@@ -72,7 +72,7 @@ Direct image:
 
 https://miro.medium.com/v2/resize:fit:1400/1*7G6vM2FfYwR4d6s8dN0V0Q.png
 
-###📌 output.png
+📌 output.png
 AI Analysis Dashboard / Generated Output
 
 Source
@@ -82,7 +82,7 @@ Image:
 
 https://cdn.dribbble.com/userupload/2677203/file/original-3a8f2c5f17d4eecb4e5b6a2d7e7ef0d2.png
 
-###📌 database.png
+📌 database.png
 Google Sheets Database
 
 Source
