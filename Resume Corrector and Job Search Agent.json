@@ -1,0 +1,479 @@
+{
+  "name": "Resume Corrector and Job Search Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        224
+      ],
+      "id": "cde9ce58-68fd-49a2-b3f3-ff61732d7c29",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "lFWqsr2UHrTwBhUx",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      },
+      "notes": "You are Resume Analyzer Agent.\n\nAnalyze the resume and provide:\n\n1. Education\n2. Skills\n3. Projects\n4. Certifications\n5. Work Experience\n\nReturn output in structured format."
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "{{ $json.text }}",
+        "options": {
+          "systemMessage": "You are Resume Analyzer Agent.\n\nAnalyze the candidate profile and provide:\n\n1. Education\n2. Skills\n3. Projects\n4. Certifications\n5. Work Experience\n\nReturn output in structured format."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        736,
+        0
+      ],
+      "id": "64ca4b42-eadc-4d49-a52a-a2b929cdf637",
+      "name": "Resume Analyzer Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1056,
+        128
+      ],
+      "id": "25a23ddc-0dc4-475e-a2d5-3557dce479cc",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "lFWqsr2UHrTwBhUx",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "{{ $('Resume Analyzer Agent').item.json.output }}",
+        "options": {
+          "systemMessage": "You are Skill Gap Analyzer Agent.\n\nAnalyze the candidate profile and provide:\n\n1. ATS Score out of 100.\n2. Missing skills.\n3. Weak areas.\n4. Technologies to learn.\n5. Certifications to pursue.\n\nReturn output in bullet points."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1008,
+        -176
+      ],
+      "id": "55660fb7-93f9-4a83-93ae-fe77c291ac39",
+      "name": "Skill Gap Analyzer Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1376,
+        128
+      ],
+      "id": "35667018-3fd8-443f-94eb-c89b506eea2d",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "lFWqsr2UHrTwBhUx",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "{{ $('Skill Gap Analyzer Agent').item.json.output }}",
+        "options": {
+          "systemMessage": "You are Job Recommender Agent.\n\nYou have already received the complete candidate profile and skill gap analysis.\n\nDo NOT ask for additional information.\n\nBased on the provided information:\n\n1. Recommend the top 5 suitable job roles.\n2. Give a match percentage for each role.\n3. Explain why the role is suitable.\n4. Mention required skills for each role.\n5. Mention roles to avoid currently.\n\nReturn the response in a table format.\n\nNever ask the user for more information."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1328,
+        -256
+      ],
+      "id": "9f26fc7c-cc42-4c04-9229-a13709b29bcf",
+      "name": "Job Recommender Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1760,
+        160
+      ],
+      "id": "1ef5fc84-0683-4262-8745-538417d7e494",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "lFWqsr2UHrTwBhUx",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "{{ $('Job Recommender Agent').item.json.output }}",
+        "options": {
+          "systemMessage": "You are Resume Improver Agent.\n\nYou have already received the candidate profile and job recommendations.\n\nDo NOT ask for additional information.\n\nPerform the following tasks:\n\n1. Suggest improvements to the resume.\n2. Suggest ATS optimization techniques.\n3. Generate 10 technical interview questions.\n4. Generate 5 HR interview questions.\n5. Generate a one-month learning roadmap.\n6. Suggest 3 projects that can improve employability.\n7. Suggest certifications that will increase chances of getting hired.\n\nReturn output with proper headings and bullet points.\n\nNever ask for more information."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1664,
+        -128
+      ],
+      "id": "4a8b2bb0-ff3e-40ee-8bd1-a4e4b0e308e7",
+      "name": "Resume Improver Agent"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1qqYvli0l4N0fEIszcssDXK665HgnSk92MoYesDHaeOE",
+          "mode": "list",
+          "cachedResultName": "ResumeAgentDB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qqYvli0l4N0fEIszcssDXK665HgnSk92MoYesDHaeOE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ResumeData",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qqYvli0l4N0fEIszcssDXK665HgnSk92MoYesDHaeOE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "Abhi",
+            "ATS Score": "80",
+            "Missing Skills": "React, Docker, Node.js",
+            "Recommended Jobs": "Full Stack Developer, Python Developer",
+            "Learning Roadmap": "React → Node.js → Docker → AWS"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ATS Score",
+              "displayName": "ATS Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Missing Skills",
+              "displayName": "Missing Skills",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Recommended Jobs",
+              "displayName": "Recommended Jobs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Learning Roadmap",
+              "displayName": "Learning Roadmap",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2032,
+        0
+      ],
+      "id": "28cfd585-d75f-4a4b-a797-8c0eae1feaa4",
+      "name": "Candidate Insights Database",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "A0U8h20d8TeVnkoW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cda42c77-7e8d-44eb-9e55-8bcb1325716d",
+      "name": "🚀 Workflow Launcher"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        176,
+        0
+      ],
+      "id": "5218f8bf-6bf2-48d3-b0d5-d8765d5f2836",
+      "name": "📥 Candidate Input Gateway",
+      "webhookId": "dd59c7d7-f0a7-438e-8c2c-deccd8664639"
+    },
+    {
+      "parameters": {
+        "sendTo": "abhishekmishra5100@gmail.com",
+        "subject": "AI Career Navigator - Resume Analysis Report",
+        "message": "Hello Candidate,\n\nYour AI-powered resume analysis has been completed successfully.\n\n✓ Resume Analysis Generated\n✓ Skill Gap Analysis Generated\n✓ Career Recommendations Generated\n✓ Resume Improvement Suggestions Generated\n\nThank you for using AI Career Navigator.\n\nRegards,\nAI Career Navigator System",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2176,
+        0
+      ],
+      "id": "42667ec0-ee99-4b2e-a697-1bf3ea39f002",
+      "name": "Send a message",
+      "webhookId": "f238bccd-1531-42f0-bdab-1022f506e26d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "VjHjK8xqDvkQkrEQ",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "AI Career Navigator",
+        "formDescription": "Upload your resume and get AI-powered career analysis, skill gap detection, and job recommendations.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Candidate Nate"
+            },
+            {
+              "fieldLabel": "Email address",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Resume PDF",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        368,
+        0
+      ],
+      "id": "892db7d5-d70b-4d9e-8a07-1dd75e08c3f0",
+      "name": "Upload Details",
+      "webhookId": "2ea13a47-11f1-418c-9adc-7d6f4b8097f2"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Resume_PDF",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        544,
+        0
+      ],
+      "id": "f78aa584-532f-44ad-a251-ea9e302a5729",
+      "name": "Resume Parser Engine"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Resume Analyzer Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resume Analyzer Agent": {
+      "main": [
+        [
+          {
+            "node": "Skill Gap Analyzer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Skill Gap Analyzer Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Skill Gap Analyzer Agent": {
+      "main": [
+        [
+          {
+            "node": "Job Recommender Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Job Recommender Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Job Recommender Agent": {
+      "main": [
+        [
+          {
+            "node": "Resume Improver Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Resume Improver Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resume Improver Agent": {
+      "main": [
+        [
+          {
+            "node": "Candidate Insights Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🚀 Workflow Launcher": {
+      "main": [
+        [
+          {
+            "node": "Resume Analyzer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📥 Candidate Input Gateway": {
+      "main": [
+        [
+          {
+            "node": "Resume Analyzer Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Details": {
+      "main": [
+        [
+          {
+            "node": "Resume Parser Engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "955bcabb-7a20-4c51-9cb9-fd84337655c3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a21bdab9f5e28e0214c57a24cc01e6caef4dd6720651158dcc4bfc8311f97e74"
+  },
+  "nodeGroups": [],
+  "id": "i9zzW5fYpmCkZEgv",
+  "tags": []
+}
