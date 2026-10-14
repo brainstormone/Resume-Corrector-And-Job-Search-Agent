@@ -1,7 +1,7 @@
 .env
 *.env
 node_modules/ 
-*.log
+*.log 
 credentials.json
 api_keys.txt
 __pycache__/
