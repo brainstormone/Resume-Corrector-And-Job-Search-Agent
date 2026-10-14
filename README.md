@@ -6,7 +6,7 @@ AI Career Navigator automates resume analysis and career assistance using multip
 
 ---
 
-## Features
+## Features for the tool
 
 - 📤 Resume Upload Hub
 - 📑 Resume Parser Engine
