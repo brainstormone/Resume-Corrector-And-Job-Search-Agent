@@ -1,8 +1,7 @@
 # Resume-Corrector-And-Job-Search-Agent
 AI-powered multi-agent career guidance system built with n8n and Google Gemini. It performs resume analysis, skill gap detection, career recommendation, resume enhancement, database storage, and email reporting. An AI-powered multi-agent career guidance system built using n8n and Google Gemini.
 
-## Overview
-
+## Overview for the Project
 AI Career Navigator automates resume analysis and career assistance using multiple AI agents. The system extracts information from uploaded PDF resumes, analyzes candidate profiles, identifies skill gaps, recommends suitable job roles, improves resumes, stores candidate insights, and sends automated email reports.
 
 ---
